@@ -1,0 +1,78 @@
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .app-container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .glass-panel {
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    color: #000;
+  }
+
+  button,
+  .login-btn,
+  .pulse,
+  .outline {
+    display: none !important;
+  }
+
+  input,
+  select,
+  textarea {
+    border: none;
+    background: transparent;
+    color: #000;
+  }
+
+  .number-input {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .stats-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .stats-icon {
+    display: none;
+  }
+
+  .dashboard-grid {
+    display: block;
+  }
+
+  .table-container {
+    overflow: visible;
+  }
+
+  th {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+  }
+
+  td {
+    background: transparent !important;
+    border-bottom: 1px solid #eee;
+  }
+
+  th:last-child,
+  td:last-child {
+    display: none !important;
+  }
+
+  .hide-print {
+    display: none !important;
+  }
+
+  @page {
+    margin: 1cm;
+  }
+}

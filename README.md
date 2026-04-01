@@ -69,6 +69,26 @@ npm run lint
 - Anforderungsdokument: `docs/ANFORDERUNGSDOKUMENT.md`
 - Transformationskonzept (Next.js, Tailwind, Supabase, Vercel): `docs/TRANSFORMATIONSKONZEPT_NEXT_SUPABASE.md`
 
+## Erste Umbaumaßnahmen (Template-Standards)
+
+Die ersten technischen Maßnahmen auf Basis von `Wamocon/template_repo` sind umgesetzt, ohne die bestehende Vite-App zu brechen:
+
+- Next.js-Migrationsziel unter `apps/web` (App Router + TypeScript + Tailwind v4 + Supabase-Client)
+- Supabase-Migrationsstruktur unter `supabase/migrations`
+- CI/CD-Workflow-Dateien unter `.github/workflows` (reusable workflows)
+- `.env.example` mit Supabase- und App-Variablen
+- rechtliche Startvorlagen unter `legal-docs`
+
+### Next.js-Migrationsziel lokal starten
+
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+Die bestehende Anwendung unter Vite bleibt parallel funktionsfähig und kann schrittweise migriert werden.
+
 ## Projektstruktur
 
 ```text

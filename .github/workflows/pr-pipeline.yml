@@ -1,0 +1,9 @@
+name: PR Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pr-pipeline:
+    uses: Wamocon/github_workflow/.github/workflows/pr-pipeline.yml@main
