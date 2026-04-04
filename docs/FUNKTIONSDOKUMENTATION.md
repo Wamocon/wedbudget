@@ -1,4 +1,4 @@
-﻿# WedBudget Funktionsdokumentation
+# WedBudget Funktionsdokumentation
 
 ## 1. Übersicht
 Dieses Dokument beschreibt die komplette Funktionsbasis der App auf Fach- und Technikniveau.
@@ -9,15 +9,15 @@ Dieses Dokument beschreibt die komplette Funktionsbasis der App auf Fach- und Te
 Komponente: src/components/landing-page.tsx
 
 Funktionen:
-- ContinÜ-Flow bei vorhandenen lokalen Daten
+- Continue-Flow bei vorhandenen lokalen Daten
 - New-Flow mit Schutzdialog bei vorhandenen lokalen Daten
 - JSON-Import
 - Export vorhandener lokaler Daten vor Überschreiben
 - Sprache und Theme Umschalter
 
 Technische Hinweise:
-- PrÃ¼ft lokale Daten bei Mount
-- SteÜrt Modal für Überschreiben/Export
+- Prüft lokale Daten bei Mount
+- Steuert Modal fuer Ueberschreiben/Export
 
 ### 2.2 Routing und Planinitialisierung
 Dateien:
@@ -26,12 +26,12 @@ Dateien:
 - src/components/plan-client.tsx
 
 Funktionen:
-- Weiterleitung von data-QÜryparametern auf /plan
+- Weiterleitung von data-Queryparametern auf /plan
 - Auswertung von fresh/mode Parametern
 - Laden von Planungsdaten aus URL oder localStorage
-- Entfernen transienter QÜryparameter nach Übernahme
+- Entfernen transienter Queryparameter nach Uebernahme
 
-Reihenfolge DatenqÜlle:
+Reihenfolge Datenquelle:
 1. URL-Daten (data)
 2. fresh=1 -> Defaultdaten
 3. lokaler Speicher
@@ -41,23 +41,23 @@ Komponente: src/components/onboarding-survey.tsx
 
 Funktionen:
 - Mehrstufige Erfassung von Eckdaten
-- Ja/Nein-Entscheidungen für KostenblÖcke
+- Ja/Nein-Entscheidungen fuer Kostenbloecke
 - Betragserfassung pro Block
-- Option für personenabhÄngige Kosten
+- Option fuer personenabhaengige Kosten
 - Erzeugung initialer Expense-Posten
 
 Validierung:
 - Name muss gesetzt sein
-- GÄsteanzahl >= 1
+- Gaesteanzahl >= 1
 - Budget >= 1
-- BetrÄge gÜltig und innerhalb Obergrenzen
+- Betraege gueltig und innerhalb Obergrenzen
 
 ### 2.4 Rechner Kernmodul
 Komponente: src/components/calculator.tsx
 
 Funktionen:
-- ReitersteÜrung: Eckdaten, Dashboard, Details
-- Persistente URL-Parameter für tab/expense
+- Reitersteuerung: Eckdaten, Dashboard, Details
+- Persistente URL-Parameter fuer tab/expense
 - Auto-Save aller Planungsdaten
 - Share-Link generieren
 - JSON Export
@@ -65,12 +65,12 @@ Funktionen:
 
 ### 2.5 Eckdaten-Reiter
 Funktionen:
-- Bearbeitung Name, Datum, GÄste, Budget
-- Übernahme per Button
-- Heuristiken bei geÄnderter GÄstezahl
+- Bearbeitung Name, Datum, Gaeste, Budget
+- Uebernahme per Button
+- Heuristiken bei geaenderter Gaestezahl
 
 Heuristik:
-- Bei isPerPerson werden Planwerte auf Basis der neÜn GÄstezahl neu berechnet.
+- Bei isPerPerson werden Planwerte auf Basis der neuen Gaestezahl neu berechnet.
 
 ### 2.6 Dashboard-Reiter
 Kennzahlen:
@@ -96,7 +96,7 @@ Diagramme:
 - Torte: Anteil Geplant vs Anteil Ausgegeben(Closed)
 
 Hinweistexte:
-- ErklÄren Statusbasis und Formeln direkt in der UI
+- Erklaeren Statusbasis und Formeln direkt in der UI
 
 ### 2.7 Details-Reiter
 Tabellenansicht:
@@ -137,7 +137,7 @@ Funktionen:
 - migrateData
 
 migrateData:
-- robustes Sanitizing für Expenses, Updates, Attachments, Checklist
+- robustes Sanitizing fuer Expenses, Updates, Attachments, Checklist
 - Legacy-Daten kompatibel
 
 ### 2.10 Sprache und Theme
@@ -146,16 +146,16 @@ Dateien:
 - src/context/theme-context.tsx
 
 Funktionen:
-- i18n für DE/EN
+- i18n fuer DE/EN
 - Persistenz der Sprache in localStorage
 - Theme light/dark mit Persistenz
 
 ## 3. UX- und Sicherheitsaspekte
 
-### 3.1 EingabebeschrÄnkungen
-- maxLength für relevante Textfelder
-- min/max für numerische Felder
-- interne clamp-Logik gegen Ausreißer
+### 3.1 Eingabebeschraenkungen
+- maxLength fuer relevante Textfelder
+- min/max fuer numerische Felder
+- interne clamp-Logik gegen Ausreisser
 
 ### 3.2 Fehlerrobustheit
 - try/catch in Storage-Zugriffen
@@ -163,14 +163,14 @@ Funktionen:
 - URL-Dekodierung abgesichert
 
 ### 3.3 Druck/PDF
-- separater Dialog für Exportmodus
-- Print-CSS für optimierte Ausgabe
+- separater Dialog fuer Exportmodus
+- Print-CSS fuer optimierte Ausgabe
 - Option alle Reiter untereinander
 
 ## 4. Bekannte Produktentscheidungen
 - Datenhaltung lokal im Browser statt Serverkonto
 - Kein Echtzeit-Mehrnutzerbetrieb
-- Statusbasierte Ausgabenlogik für realistische Finanzsicht
+- Statusbasierte Ausgabenlogik fuer realistische Finanzsicht
 
 ## 5. Technischer Stack
 - Next.js 16 (App Router)
@@ -179,18 +179,14 @@ Funktionen:
 - Recharts
 - lucide-react
 
-## 6. Test- und QualitÄtsstatus
-Nach den letzten Änderungen:
+## 6. Test- und Qualitaetsstatus
+Nach den letzten Aenderungen:
 - Typecheck erfolgreich
 - Lint erfolgreich
 - Production Build erfolgreich
 
-## 7. Empfohlene nÄchste Ausbaustufen
+## 7. Empfohlene naechste Ausbaustufen
 - optionale serverseitige Sync-Funktion
 - differenzierte Rollen/Berechtigungen
 - erweiterte Report-Ansichten pro Zeitraum
-- CSV-Export für externe Auswertungen
-
-
-
-
+- CSV-Export fuer externe Auswertungen
