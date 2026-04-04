@@ -1,10 +1,10 @@
-# Impressum
+﻿# Impressum
 
 Stand: April 2026
 
 ## Verantwortlicher
 
-Wird projektspezifisch ergaenzt.
+Wird projektspezifisch ergÄnzt.
 
 ## Kontakt
 
@@ -12,8 +12,11 @@ Wird projektspezifisch ergaenzt.
 
 ## Angaben zum Angebot
 
-WedBudget ist eine webbasierte Software-as-a-Service-Plattform fuer Hochzeitsbudgetplanung.
+WedBudget ist eine webbasierte Software-as-a-Service-Plattform für Hochzeitsbudgetplanung.
 
 ---
 
-Hinweis: Diese Datei ist ein Startplatzhalter nach Template-Standard und muss juristisch geprueft und vervollstaendigt werden.
+Hinweis: Diese Datei ist ein Startplatzhalter nach Template-Standard und muss juristisch geprüft und vervollständigt werden.
+
+
+

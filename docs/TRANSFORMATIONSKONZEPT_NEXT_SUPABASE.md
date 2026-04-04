@@ -1,8 +1,8 @@
-# Transformationskonzept: WedBudget von React/Vite zu Next.js + Tailwind + Supabase + Vercel
+﻿# Transformationskonzept: WedBudget von React/Vite zu Next.js + Tailwind + Supabase + Vercel
 
 ## 1. Zielbild
 
-Das bestehende Frontend wird auf einen produktionsreifen SaaS-Stack umgebaut, ohne den aktuellen Funktionsumfang der Budgetplanung zu verlieren.
+Das bestehende Frontend wird auf einen produktionsreifen SaaS-Stack umgebaut, ohne den aktüllen Funktionsumfang der Budgetplanung zu verlieren.
 
 Ziel-Stack:
 
@@ -11,9 +11,9 @@ Ziel-Stack:
 - Supabase (Auth, Postgres, Storage, optional Edge Functions)
 - Vercel (Deployment, Preview Environments, Production)
 
-## 2. Was erhalten bleiben muss (Funktionsparität)
+## 2. Was erhalten bleiben muss (FunktionsparitÃ¤t)
 
-Der aktuelle Kernnutzen bleibt identisch:
+Der aktülle Kernnutzen bleibt identisch:
 
 - Hochzeitsbudget erstellen und fortlaufend pflegen
 - Kostenpositionen verwalten
@@ -33,16 +33,16 @@ Ist-System:
 
 Zielplattform:
 
-- Mandantenfähige Plattform mit Accounts und Rollen
+- MandantenfÃ¤hige Plattform mit Accounts und Rollen
 - Persistente Cloud-Daten in Supabase
 - Rechtssichere Registrierung und Login
 - Rollen und Lizenzlogik
 - Sprachen DE/EN
 - Monetarisierung und User-/Projekt-Lizenzen
 
-## 4. Aktivitätsübersicht für den Umbau
+## 4. AktivitÃ¤tsÃ¼bersicht fÃ¼r den Umbau
 
-### 4.1 Produkt- und Domain-Aktivitäten
+### 4.1 Produkt- und Domain-AktivitÃ¤ten
 
 - Zielgruppen- und Preisstrategie definieren
 - Rollenmodell und Rechtekatalog finalisieren
@@ -50,25 +50,25 @@ Zielplattform:
 - Terms Acceptance Flow (AGB/Datenschutz/Impressum) definieren
 - FAQ/Hilfe Informationsarchitektur definieren
 
-### 4.2 Technische Kernaktivitäten
+### 4.2 Technische KernaktivitÃ¤ten
 
-- Neues Monorepo oder neues Next.js Hauptprojekt anlegen
-- Datenmodell in Supabase entwerfen und migrationsfähig versionieren
+- Neüs Monorepo oder neüs Next.js Hauptprojekt anlegen
+- Datenmodell in Supabase entwerfen und migrationsfÃ¤hig versionieren
 - Auth-Flows (Login, Registrierung, Session) integrieren
-- Telefonvalidierung über WhatsApp oder SMS integrieren
+- Telefonvalidierung Ã¼ber WhatsApp oder SMS integrieren
 - Bestehende Rechenlogik in testbare Domain-Funktionen auslagern
 - UI von CSS auf Tailwind-Komponenten migrieren
 - i18n auf DE/EN umstellen
 - Rollenbasierte Zugriffskontrolle im Frontend und in Row Level Security umsetzen
-- Lizenzprüfung in Middleware und API-Routen einbauen
+- LizenzprÃ¼fung in Middleware und API-Routen einbaün
 - Vercel Deployment mit Env-Secrets und Branch-Preview aufsetzen
 
-### 4.3 Compliance- und Operations-Aktivitäten
+### 4.3 Compliance- und Operations-AktivitÃ¤ten
 
 - Rechtstexte bereitstellen und versionieren
-- Consent-Logging für Registrierung umsetzen
-- Monitoring, Error Tracking, Audit Events einführen
-- Backup- und Restore-Prozess für Datenbank definieren
+- Consent-Logging fÃ¼r Registrierung umsetzen
+- Monitoring, Error Tracking, Audit Events einfÃ¼hren
+- Backup- und Restore-Prozess fÃ¼r Datenbank definieren
 
 ## 5. Zielarchitektur
 
@@ -78,7 +78,7 @@ Zielplattform:
 - Application Layer: Server Actions oder Route Handlers
 - Data Layer: Supabase Postgres + RLS Policies
 - Identity: Supabase Auth + OTP/Provider
-- Communication: WhatsApp/SMS Provider für Telefonvalidierung
+- Communication: WhatsApp/SMS Provider fÃ¼r Telefonvalidierung
 - Hosting: Vercel
 
 ## 5.2 Empfohlene technische Entscheidungen
@@ -94,7 +94,7 @@ Zielplattform:
 Empfohlene Rollen:
 
 - Super Admin
-: Plattformkonfiguration, Lizenzpläne, User-Moderation, Support-Eingriffe
+: Plattformkonfiguration, LizenzplÃ¤ne, User-Moderation, Support-Eingriffe
 
 - Admin
 : Verwaltung von Organisation/Team, Projekt- und User-Lizenzen im eigenen Tenant
@@ -103,7 +103,7 @@ Empfohlene Rollen:
 : Erstellung und Bearbeitung eigener Projekte nach Lizenzgrenzen
 
 - Readonly User (optional)
-: Lesender Zugriff für Partner/Berater
+: Lesender Zugriff fÃ¼r Partner/Berater
 
 Rechtebeispiele:
 
@@ -113,22 +113,22 @@ Rechtebeispiele:
 
 Sicherheitsprinzip:
 
-- Jede Datenzugriffsregel zusätzlich in Supabase RLS abbilden
-- Kein Vertrauen nur auf Frontend-Gating
+- Jede Datenzugriffsregel zusÃ¤tzlich in Supabase RLS abbilden
+- Kein Vertraün nur auf Frontend-Gating
 
 ## 7. Anmeldung und Registrierung
 
 ## 7.1 Login
 
 - E-Mail + Passwort und optional Social Login
-- Session Handling über Supabase
-- Optional: Magic Link für einfache Rückkehr
+- Session Handling Ã¼ber Supabase
+- Optional: Magic Link fÃ¼r einfache RÃ¼ckkehr
 
 ## 7.2 Registrierung mit Telefonvalidierung
 
 Empfehlung:
 
-- Primär: SMS OTP (stabil, standardisiert)
+- PrimÃ¤r: SMS OTP (stabil, standardisiert)
 - Optional: WhatsApp OTP als zweiter Kanal
 
 Flow:
@@ -136,14 +136,14 @@ Flow:
 1. Nutzer gibt E-Mail, Passwort, Name, Telefon ein
 2. Nutzer akzeptiert Pflicht-Checkboxen
 3. OTP wird via SMS/WhatsApp versendet
-4. Nutzer bestätigt OTP
+4. Nutzer bestÃ¤tigt OTP
 5. Account wird freigeschaltet
 
 Pflicht-Checkboxen:
 
 - Zustimmung zu AGB
-- Zustimmung zu Datenschutzerklärung
-- Bestätigung Volljährigkeit oder gesetzliche Vertretung (je nach Zielmarkt)
+- Zustimmung zu DatenschutzerklÃ¤rung
+- BestÃ¤tigung VolljÃ¤hrigkeit oder gesetzliche Vertretung (je nach Zielmarkt)
 - Optionales Marketing-Opt-in getrennt von Pflichtzustimmungen
 
 Nachweisbarkeit:
@@ -186,14 +186,14 @@ Umsetzung:
 
 Ziel:
 
-- Produkt vollständig in Deutsch und Englisch
+- Produkt vollstÃ¤ndig in Deutsch und Englisch
 - Sprache pro Nutzerprofil speicherbar
-- URL-basiertes Locale Routing möglich
+- URL-basiertes Locale Routing mÃ¶glich
 
 Umsetzung:
 
 - Locale Segmente oder Header-basiertes Routing
-- Übersetzungskeys je Domain-Bereich
+- Ãœbersetzungskeys je Domain-Bereich
 - Migration der existierenden Texte von DE/RU nach DE/EN
 
 ## 11. Projektauswahl
@@ -201,13 +201,13 @@ Umsetzung:
 Anforderung:
 
 - Nutzer kann mehrere Projekte besitzen
-- Aktives Projekt ist auswählbar
+- Aktives Projekt ist auswÃ¤hlbar
 
 Umsetzung:
 
 - Dashboard mit Projektliste, Suche, Filter
 - Projektkontext in Session oder URL Segment
-- Rechteprüfung pro Projektmitgliedschaft
+- RechteprÃ¼fung pro Projektmitgliedschaft
 
 ## 12. Monetarisierung: Projekt- und User-Lizenzierung
 
@@ -232,7 +232,7 @@ Zahlung:
 
 - Stripe als Standard (Abo, Rechnungen, Webhooks)
 
-## 13. FAQ und Hilfe-Menüs
+## 13. FAQ und Hilfe-MenÃ¼s
 
 Ziel:
 
@@ -244,10 +244,10 @@ Umsetzung:
 - Kontextbezogene Hilfetexte in Formularen
 - FAQ Kategorien: Budgetlogik, Export, Sharing, Lizenzen, Konto
 
-## 14. Funktionsparitäts-Matrix (Ist zu Ziel)
+## 14. FunktionsparitÃ¤ts-Matrix (Ist zu Ziel)
 
-- Gästezahl, Region, Budget
-: bleibt erhalten; Domain-Logik wird unverändert portiert
+- GÃ¤stezahl, Region, Budget
+: bleibt erhalten; Domain-Logik wird unverÃ¤ndert portiert
 
 - Positionen (Kategorie, Kosten, Status)
 : bleibt erhalten; Speicherung in Tabellen statt Local Storage
@@ -259,10 +259,10 @@ Umsetzung:
 : bleibt erhalten; Recharts in Client-Komponente
 
 - JSON Export/Import
-: bleibt erhalten; zusätzlich serverseitiges Backup optional
+: bleibt erhalten; zusÃ¤tzlich serverseitiges Backup optional
 
 - Share Link
-: bleibt erhalten; perspektivisch über sichere Share Tokens statt Voll-Daten in URL
+: bleibt erhalten; perspektivisch Ã¼ber sichere Share Tokens statt Voll-Daten in URL
 
 - Druck/PDF
 : bleibt erhalten; Print CSS oder PDF-Export Service
@@ -286,11 +286,11 @@ Kern-Tabellen:
 
 Wichtige Felder:
 
-- projects: owner_id, name, wedding_date, guest_count, region, total_budget
+- projects: owner_id, name, wedding_date, güst_count, region, total_budget
 - expenses: project_id, category_key, item, estimated, actual, paid, comment, is_per_person, cost_per_person
 - consent_logs: user_id, terms_version, privacy_version, accepted_at, ip_hash
 
-## 16. Migrationsstrategie zur Erhaltung der Funktionalität
+## 16. Migrationsstrategie zur Erhaltung der FunktionalitÃ¤t
 
 ### Phase 0: Stabilisierung Ist-System
 
@@ -318,14 +318,14 @@ Wichtige Felder:
 
 ### Phase 4: Admin und Lizenzierung
 
-- Admin User-Management bauen
-- Lizenzgrenzen und Prüfungen integrieren
+- Admin User-Management baün
+- Lizenzgrenzen und PrÃ¼fungen integrieren
 - Zahlungsintegration aktivieren
 
 ### Phase 5: Internationalisierung und Hilfe
 
 - DE/EN Texte finalisieren
-- FAQ/Hilfe-Menüs integrieren
+- FAQ/Hilfe-MenÃ¼s integrieren
 - QA auf beide Sprachen
 
 ### Phase 6: Go-Live
@@ -343,10 +343,10 @@ Wichtige Felder:
 : Auth, Registrierung, Telefon-OTP, Consent-Logs
 
 - Woche 5-6
-: Rechnerkern und Positionen vollständig portieren, Tests
+: Rechnerkern und Positionen vollstÃ¤ndig portieren, Tests
 
 - Woche 7
-: Projektauswahl und Multi-Projektfähigkeit
+: Projektauswahl und Multi-ProjektfÃ¤higkeit
 
 - Woche 8
 : Admin-Management und Rollenverwaltung
@@ -357,21 +357,21 @@ Wichtige Felder:
 - Woche 10
 : FAQ/Hilfe, Feinschliff, Security/Legal Review, Go-Live
 
-## 18. Risiken und Gegenmaßnahmen
+## 18. Risiken und GegenmaÃŸnahmen
 
 - Risiko: Funktionsverlust beim Portieren
-: Gegenmaßnahme: Paritäts-Matrix + Golden Master Tests
+: GegenmaÃŸnahme: ParitÃ¤ts-Matrix + Golden Master Tests
 
-- Risiko: Komplexität der Rollen und Lizenzen
-: Gegenmaßnahme: erst klare Matrix, dann schrittweise Freischaltung
+- Risiko: KomplexitÃ¤t der Rollen und Lizenzen
+: GegenmaÃŸnahme: erst klare Matrix, dann schrittweise Freischaltung
 
 - Risiko: OTP-Zustellprobleme
-: Gegenmaßnahme: Fallback von WhatsApp auf SMS und Retry-Policy
+: GegenmaÃŸnahme: Fallback von WhatsApp auf SMS und Retry-Policy
 
-- Risiko: Rechtliche Unschärfen
-: Gegenmaßnahme: juristische Prüfung vor Go-Live
+- Risiko: Rechtliche UnschÃ¤rfen
+: GegenmaÃŸnahme: juristische PrÃ¼fung vor Go-Live
 
-## 19. KPI-Vorschläge für die neue Plattform
+## 19. KPI-VorschlÃ¤ge fÃ¼r die neü Plattform
 
 - Aktivierungsrate nach Registrierung
 - Anteil erfolgreich validierter Telefonnummern
@@ -385,53 +385,54 @@ Wichtige Felder:
 Positionierungskern:
 
 - Emotionale Sicherheit plus finanzielle Klarheit
-- Keine Excel-Überforderung, stattdessen geführte Hochzeitsplanung
+- Keine Excel-Ãœberforderung, stattdessen gefÃ¼hrte Hochzeitsplanung
 - Datenschutzfreundlich und transparent
 
 Zielgruppenansprache:
 
-- Paare in der frühen Planungsphase
+- Paare in der frÃ¼hen Planungsphase
 - Wedding Planner als Multiplikatoren
-- Content-Partnerschaften (Blogs, Influencer im Wedding Segment)
+- Content-Partnerschaften (Blogs, Inflüncer im Wedding Segment)
 
-Value Proposition:
+Valü Proposition:
 
 - Planen wie Profis, einfach wie eine Checkliste
 - Budgettransparenz in Echtzeit
-- Teamfähig und skalierbar für mehrere Projekte
+- TeamfÃ¤hig und skalierbar fÃ¼r mehrere Projekte
 
-## 21. Namens-, Logo- und Hook-Vorschläge (mindestens 3)
+## 21. Namens-, Logo- und Hook-VorschlÃ¤ge (mindestens 3)
 
 ### Vorschlag 1
 
 - App Name: WedBudget Pro
-- Hook: Eure Hochzeit im Kopf, euer Budget im Griff.
-- Logo-Idee: Kombi aus Ring-Silhouette und aufsteigendem Budget-Chart in Gold/Sage
+- Hook: Eure Hochzeit im Kopf, eür Budget im Griff.
+- Logo-Idee: Kombi aus Ring-Silhoütte und aufsteigendem Budget-Chart in Gold/Sage
 
 ### Vorschlag 2
 
 - App Name: BudgetVow
-- Hook: Erst das Ja-Wort, dann das Smart-Wort fürs Budget.
-- Logo-Idee: Vow-Symbol als geschwungene Linie, die in ein Schild (Sicherheit/Planbarkeit) übergeht
+- Hook: Erst das Ja-Wort, dann das Smart-Wort fÃ¼rs Budget.
+- Logo-Idee: Vow-Symbol als geschwungene Linie, die in ein Schild (Sicherheit/Planbarkeit) Ã¼bergeht
 
 ### Vorschlag 3
 
 - App Name: EverPlan Wedding
-- Hook: Große Gefühle. Klare Zahlen.
+- Hook: GroÃŸe GefÃ¼hle. Klare Zahlen.
 - Logo-Idee: Monogramm EP mit Herz-Negativform und dezenter Kalenderkante
 
 ### Vorschlag 4 (Bonus)
 
 - App Name: PlanMyWedding Budget
 - Hook: Von der Idee bis zum letzten Euro.
-- Logo-Idee: Kreisförmiger Fortschrittsring mit kleiner Diamantmarke als Abschluss
+- Logo-Idee: KreisfÃ¶rmiger Fortschrittsring mit kleiner Diamantmarke als Abschluss
 
 ## 22. Empfehlung zur Priorisierung
 
-MVP Priorität:
+MVP PrioritÃ¤t:
 
 1. Auth, Registrierung, Consent, Kernrechner, Supabase Persistenz
 2. Projektauswahl, DE/EN, rechtliche Seiten
 3. Admin-Panel, Lizenzierung, Monetarisierung, Hilfe-Center
 
-Dadurch bleibt die bestehende Kernfunktionalität jederzeit verfügbar, während schrittweise ein belastbares SaaS-Produkt entsteht.
+Dadurch bleibt die bestehende KernfunktionalitÃ¤t jederzeit verfÃ¼gbar, wÃ¤hrend schrittweise ein belastbares SaaS-Produkt entsteht.
+

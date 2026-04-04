@@ -1,12 +1,12 @@
-# Template-Standards: Uebernahmeprotokoll (Wamocon/template_repo)
+﻿# Template-Standards: Übernahmeprotokoll (Wamocon/template_repo)
 
 ## Ziel
 
-Erste Umbauschritte auf Basis der technischen Anforderungen aus `Wamocon/template_repo`, ohne die bestehende Vite-Anwendung sofort abzuschaelten.
+Erste Umbauschritte auf Basis der technischen Anforderungen aus `Wamocon/template_repo`, ohne die bestehende Vite-Anwendung sofort abzuschÄlten.
 
-## Uebernommene Standards (Phase 1)
+## Übernommene Standards (Phase 1)
 
-- Next.js App Router + TypeScript Strict als neues Zielprojekt unter `apps/web`
+- Next.js App Router + TypeScript Strict als neÜs Zielprojekt unter `apps/web`
 - Tailwind CSS v4 Integration (`@tailwindcss/postcss`)
 - Supabase-Setup-Standard mit `.env.example`
 - Supabase Migrationsstruktur unter `supabase/migrations`
@@ -39,12 +39,12 @@ Erste Umbauschritte auf Basis der technischen Anforderungen aus `Wamocon/templat
 
 5. Rechtstexte als Startstruktur angelegt
 - `legal-docs/agb.md`
-- `legal-docs/datenschutzerklaerung.md`
+- `legal-docs/datenschutzerklÄrung.md`
 - `legal-docs/impressum.md`
 
 ## Verifikation
 
-In `apps/web` erfolgreich ausgefuehrt:
+In `apps/web` erfolgreich ausgefÜhrt:
 
 - `npm run typecheck`
 - `npm run lint`
@@ -56,13 +56,16 @@ Status: erfolgreich.
 
 Beim Build erscheint ein Next.js Hinweis zu mehreren Lockfiles im Workspace. Das ist in der Parallel-Migrationsphase erwartbar.
 
-## Naechste technische Schritte (Phase 2)
+## NÄchste technische Schritte (Phase 2)
 
 1. Domain-Logik aus der bestehenden Vite-App in shared Utilities extrahieren (Berechnungen, Heuristiken, Kategorien).
-2. Seiten in `apps/web` aufbauen:
+2. Seiten in `apps/web` aufbaÜn:
 - Landing
-- Rechner (Funktionsparitaet)
+- Rechner (FunktionsparitÄt)
 - Legal Seiten
-3. Supabase RLS und Auth-Struktur einfuehren (profiles, projects, expenses, memberships).
+3. Supabase RLS und Auth-Struktur einfÜhren (profiles, projects, expenses, memberships).
 4. Datenmigration von LocalStorage auf Supabase mit Import-Assistent.
 5. DE/EN i18n im Next.js App Router implementieren.
+
+
+

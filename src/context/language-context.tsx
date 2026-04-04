@@ -33,26 +33,56 @@ interface Translations {
   calcPdfTip: string;
   calcTitle: string;
   calcSubtitle: string;
+  datePlaceholderDay: string;
+  datePlaceholderMonth: string;
+  datePlaceholderYear: string;
   setupTitle: string;
   setupGuests: string;
-  setupRegion: string;
   setupBudget: string;
-  setupHint: (region: string) => string;
+  setupHint: string;
+  statBudget: string;
   statPlanned: string;
-  statActual: string;
-  statBuffer: string;
-  chartTitle: string;
+  statPlannedRemaining: string;
+  statSpent: string;
+  statPlanDiff: string;
+  statPlanDiffLong: string;
+  statProfitLoss: string;
+  chartPlanDiffTitle: string;
+  chartProfitLossTitle: string;
+  chartShareTitle: string;
+  chartBudget: string;
   chartPlanned: string;
-  chartActual: string;
+  chartSpent: string;
+  chartPlanDiff: string;
+  chartProfitLoss: string;
+  chartPlannedShare: string;
+  chartSpentShare: string;
+  chartNoData: string;
+  dashboardHintTitle: string;
+  dashboardHintStatusBasis: string;
+  dashboardHintRemainingFormula: string;
+  dashboardHintPlanDiffFormula: string;
+  dashboardHintProfitLossFormula: string;
+  weddingCountdownDays: (days: number) => string;
+  weddingCountdownToday: string;
+  weddingCountdownPast: string;
   tableTitle: string;
   tableAddBtn: string;
   colStatus: string;
+  colCategory: string;
   colPosition: string;
   colComment: string;
   colTargetDate: string;
   colFactor: string;
   colPlanned: string;
   colActual: string;
+  filterAllStatuses: string;
+  filterAllCategories: string;
+  filterByStatus: string;
+  filterByCategory: string;
+  resetFilters: string;
+  sortAsc: string;
+  sortDesc: string;
   statusPaid: string;
   statusOpen: string;
   statusMarkPaid: string;
@@ -80,6 +110,21 @@ interface Translations {
   onboardingNoBudgetYet: string;
   onboardingValidationYesNo: string;
   onboardingValidationAmount: string;
+  onboardingValidationName: string;
+  onboardingValidationGuests: string;
+  onboardingValidationBudget: string;
+  onboardingBasicsNameTitle: string;
+  onboardingBasicsNameDescription: string;
+  onboardingBasicsNameLabel: string;
+  onboardingBasicsDateTitle: string;
+  onboardingBasicsDateDescription: string;
+  onboardingBasicsDateLabel: string;
+  onboardingBasicsGuestsTitle: string;
+  onboardingBasicsGuestsDescription: string;
+  onboardingBasicsGuestsLabel: string;
+  onboardingBasicsBudgetTitle: string;
+  onboardingBasicsBudgetDescription: string;
+  onboardingBasicsBudgetLabel: string;
   onboardingLocationTitle: string;
   onboardingLocationDescription: string;
   onboardingCateringTitle: string;
@@ -103,7 +148,6 @@ interface Translations {
   onboardingPhotographer: string;
   onboardingVideographer: string;
   categories: string[];
-  regions: Record<string, string>;
 }
 
 const translations: Record<string, Translations> = {
@@ -123,7 +167,7 @@ const translations: Record<string, Translations> = {
     heroDisclaimer: 'Kein Login. Keine Datenspeicherung. Eure Daten bleiben im Browser.',
     feature1Title: 'Realistische Schätzungen',
     feature1Text:
-      'Gebt einfach Gästezahl und Region ein. Unser Rechner gibt euch direkt eine grobe Orientierung für Location und Catering, damit ihr realistisch planen könnt.',
+      'Gebt einfach Gästezahl und Budget ein. Unser Rechner gibt euch direkt eine grobe Orientierung für zentrale Kostenblöcke, damit ihr realistisch planen könnt.',
     feature2Title: 'Automatische Speicherung',
     feature2Text:
       'Dieses Tool speichert alles lokal in eurem Browser. Verlasst die Seite sorgenfrei – ihr macht beim nächsten Öffnen genau da weiter, wo ihr aufgehört habt.',
@@ -142,29 +186,56 @@ const translations: Record<string, Translations> = {
     calcPdfTip: 'Tabelle als PDF Dokument drucken',
     calcTitle: 'Hochzeits-Budgetplaner',
     calcSubtitle: 'Hochzeit einfach planen.',
+    datePlaceholderDay: 'Tag',
+    datePlaceholderMonth: 'Monat',
+    datePlaceholderYear: 'Jahr',
     setupTitle: 'Event Eckdaten',
     setupGuests: 'Gästeanzahl',
-    setupRegion: 'Region',
-    setupBudget: 'Gesamtbudget (€)',
-    setupHint: (region: string) => {
-      void region;
-      return '<strong>KI-Heuristik aktiv:</strong> Kosten für Posten, die sich nach Gästen richten (siehe Tabelle), werden bei Änderung der Gästezahl automatisch angepasst. Regionale Faktoren werden nicht berücksichtigt.';
-    },
-    statPlanned: 'Geplant',
-    statActual: 'Tatsächlich',
-    statBuffer: 'Differenz',
-    chartTitle: 'Soll-Ist Vergleich nach Kategorie',
+    setupBudget: 'Budget (€)',
+    setupHint: '<strong>KI-Heuristik aktiv:</strong> Kosten für Posten, die sich nach Gästen richten (siehe Tabelle), werden bei Änderung der Gästezahl automatisch angepasst.',
+    statBudget: 'Budget',
+    statPlanned: 'Geplante Ausgaben',
+    statPlannedRemaining: 'Geplante Restausgaben',
+    statSpent: 'Ausgegeben (Bezahlt/Fertig)',
+    statPlanDiff: 'Vor. Ergebnis',
+    statPlanDiffLong: 'Voraussichtliches Ergebnis',
+    statProfitLoss: 'Gesamtergebnis',
+    chartPlanDiffTitle: 'Voraussichtliches Ergebnis (Budget - (Geplante Restausgaben + Ausgegeben))',
+    chartProfitLossTitle: 'Gesamtergebnis (Budget - Ausgegeben in Bezahlt/Fertig)',
+    chartShareTitle: 'Anteil Geplant und Ausgegeben (Bezahlt/Fertig)',
+    chartBudget: 'Budget',
     chartPlanned: 'Geplant',
-    chartActual: 'Tatsächlich',
+    chartSpent: 'Ausgegeben (Bezahlt/Fertig)',
+    chartPlanDiff: 'Voraussichtliches Ergebnis',
+    chartProfitLoss: 'Gesamtergebnis',
+    chartPlannedShare: 'Anteil Geplant',
+    chartSpentShare: 'Anteil Ausgegeben (Bezahlt/Fertig)',
+    chartNoData: 'Keine Daten',
+    dashboardHintTitle: 'Hinweise zur Berechnungslogik',
+    dashboardHintStatusBasis: 'Ausgegeben wird nur für Kostenposten mit Status Bezahlt oder Fertig berücksichtigt.',
+    dashboardHintRemainingFormula: 'Geplante Restausgaben = Geplante Ausgaben gesamt - Geplante Ausgaben in Bezahlt/Fertig.',
+    dashboardHintPlanDiffFormula: 'Voraussichtliches Ergebnis = Budget - (Geplante Restausgaben + Ausgegeben in Bezahlt/Fertig).',
+    dashboardHintProfitLossFormula: 'Gesamtergebnis = Budget - Ausgegeben in Bezahlt/Fertig.',
+    weddingCountdownDays: (days: number) => `Noch ${days} ${days === 1 ? 'Tag' : 'Tage'} bis zur Hochzeit`,
+    weddingCountdownToday: 'Heute wird nicht geplant... genießt euren schönen Hochzeitstag! :-)',
+    weddingCountdownPast: 'Herzlichen Glückwunsch zur vergangenen Hochzeit',
     tableTitle: 'Voranschlag & Ausgaben',
     tableAddBtn: 'Position hinzufügen',
     colStatus: 'Status',
+    colCategory: 'Kategorie',
     colPosition: 'Position',
     colComment: 'Kommentar',
     colTargetDate: 'Zieldatum',
     colFactor: 'Faktor (p.P.)',
     colPlanned: 'Geplant (€)',
-    colActual: 'Tatsächlich (€)',
+    colActual: 'Ausgegeben (€)',
+    filterAllStatuses: 'Alle Status',
+    filterAllCategories: 'Alle Kategorien',
+    filterByStatus: 'Nach Status filtern',
+    filterByCategory: 'Nach Kategorie filtern',
+    resetFilters: 'Filter zurücksetzen',
+    sortAsc: 'Aufsteigend sortieren',
+    sortDesc: 'Absteigend sortieren',
     statusPaid: 'Bezahlt',
     statusOpen: 'Offen',
     statusMarkPaid: 'Als bezahlt markieren',
@@ -194,6 +265,21 @@ const translations: Record<string, Translations> = {
     onboardingNoBudgetYet: 'Noch keine Auswahl. Ihr könnt diese Posten später auch manuell anlegen.',
     onboardingValidationYesNo: 'Bitte zuerst Ja oder Nein auswählen.',
     onboardingValidationAmount: 'Bitte gib einen Betrag von mindestens 0 ein.',
+    onboardingValidationName: 'Bitte gib einen Namen für eure Hochzeit ein.',
+    onboardingValidationGuests: 'Bitte gib eine Gästeanzahl von mindestens 1 ein.',
+    onboardingValidationBudget: 'Bitte gib ein Gesamtbudget von mindestens 1 ein.',
+    onboardingBasicsNameTitle: 'Wie soll eure Planung heißen?',
+    onboardingBasicsNameDescription: 'Dieser Name erscheint später als Titel in eurem Budgetplan.',
+    onboardingBasicsNameLabel: 'Planungsname',
+    onboardingBasicsDateTitle: 'Wann findet eure Hochzeit statt?',
+    onboardingBasicsDateDescription: 'Das Datum hilft euch bei der zeitlichen Orientierung in der Planung.',
+    onboardingBasicsDateLabel: 'Hochzeitsdatum',
+    onboardingBasicsGuestsTitle: 'Mit wie vielen Gästen plant ihr?',
+    onboardingBasicsGuestsDescription: 'Viele Kosten hängen direkt von der Gästeanzahl ab.',
+    onboardingBasicsGuestsLabel: 'Gästeanzahl',
+    onboardingBasicsBudgetTitle: 'Wie hoch ist euer Gesamtbudget?',
+    onboardingBasicsBudgetDescription: 'Damit können wir euch eine realistische erste Budgetbasis setzen.',
+    onboardingBasicsBudgetLabel: 'Budget (€)',
     onboardingLocationTitle: 'Ist eure Location bereits klar?',
     onboardingLocationDescription: 'Wenn ja, legen wir direkt einen passenden Detailposten für die Location an.',
     onboardingCateringTitle: 'Ist das Catering bereits klar?',
@@ -232,25 +318,6 @@ const translations: Record<string, Translations> = {
       'Trauzeugen',
       'Sonstiges',
     ],
-    regions: {
-      'Baden-Württemberg': 'Baden-Württemberg',
-      Bayern: 'Bayern',
-      Berlin: 'Berlin',
-      Brandenburg: 'Brandenburg',
-      Bremen: 'Bremen',
-      Hamburg: 'Hamburg',
-      Hessen: 'Hessen',
-      'Mecklenburg-Vorpommern': 'Mecklenburg-Vorpommern',
-      Niedersachsen: 'Niedersachsen',
-      'Nordrhein-Westfalen': 'Nordrhein-Westfalen',
-      'Rheinland-Pfalz': 'Rheinland-Pfalz',
-      Saarland: 'Saarland',
-      Sachsen: 'Sachsen',
-      'Sachsen-Anhalt': 'Sachsen-Anhalt',
-      'Schleswig-Holstein': 'Schleswig-Holstein',
-      Thüringen: 'Thüringen',
-      International: 'International',
-    },
   },
 
   en: {
@@ -269,7 +336,7 @@ const translations: Record<string, Translations> = {
     heroDisclaimer: 'No login. No data storage. Your data stays in the browser.',
     feature1Title: 'Realistic Estimates',
     feature1Text:
-      'Simply enter the number of guests and your region. Our calculator gives you a rough orientation for venue and catering so you can plan realistically.',
+      'Simply enter your guest count and total budget. Our calculator gives you a rough orientation for core cost blocks so you can plan realistically.',
     feature2Title: 'Automatic Saving',
     feature2Text:
       'This tool saves everything locally in your browser. Leave the page without worry — you continue right where you left off next time.',
@@ -288,29 +355,56 @@ const translations: Record<string, Translations> = {
     calcPdfTip: 'Print table as PDF document',
     calcTitle: 'Wedding Budget Planner',
     calcSubtitle: 'A free helper for your stress-free planning',
+    datePlaceholderDay: 'Day',
+    datePlaceholderMonth: 'Month',
+    datePlaceholderYear: 'Year',
     setupTitle: 'Event Details',
     setupGuests: 'Guest Count',
-    setupRegion: 'Region',
-    setupBudget: 'Total Budget (€)',
-    setupHint: (region: string) => {
-      void region;
-      return '<strong>AI Heuristics active:</strong> Per-guest costs (see table) are automatically adjusted when the guest count changes. Regional factors are not applied.';
-    },
-    statPlanned: 'Planned',
-    statActual: 'Actual',
-    statBuffer: 'Difference',
-    chartTitle: 'Plan vs. Actual by Category',
+    setupBudget: 'Budget (€)',
+    setupHint: '<strong>AI Heuristics active:</strong> Per-guest costs (see table) are automatically adjusted when the guest count changes.',
+    statBudget: 'Budget',
+    statPlanned: 'Planned Expenses',
+    statPlannedRemaining: 'Planned Remaining',
+    statSpent: 'Spent (Paid/Done)',
+    statPlanDiff: 'Est. Result',
+    statPlanDiffLong: 'Estimated Result',
+    statProfitLoss: 'Total Result',
+    chartPlanDiffTitle: 'Estimated Result (Budget - (Planned remaining + Spent))',
+    chartProfitLossTitle: 'Total Result (Budget - Spent in Paid/Done)',
+    chartShareTitle: 'Planned vs Spent Share (Paid/Done)',
+    chartBudget: 'Budget',
     chartPlanned: 'Planned',
-    chartActual: 'Actual',
+    chartSpent: 'Spent (Paid/Done)',
+    chartPlanDiff: 'Estimated Result',
+    chartProfitLoss: 'Total Result',
+    chartPlannedShare: 'Planned Share',
+    chartSpentShare: 'Spent Share (Paid/Done)',
+    chartNoData: 'No data',
+    dashboardHintTitle: 'Calculation logic notes',
+    dashboardHintStatusBasis: 'Spent only includes cost items with status Paid or Done.',
+    dashboardHintRemainingFormula: 'Planned Remaining = Total Planned Expenses - Planned Expenses in Paid/Done.',
+    dashboardHintPlanDiffFormula: 'Estimated Result = Budget - (Planned Remaining + Spent in Paid/Done).',
+    dashboardHintProfitLossFormula: 'Total Result = Budget - Spent in Paid/Done.',
+    weddingCountdownDays: (days: number) => `${days} ${days === 1 ? 'day' : 'days'} until the wedding`,
+    weddingCountdownToday: 'No planning today... enjoy your beautiful wedding day! :-)',
+    weddingCountdownPast: 'Congratulations on your wedding day that has already passed',
     tableTitle: 'Budget & Expenses',
     tableAddBtn: 'Add position',
     colStatus: 'Status',
+    colCategory: 'Category',
     colPosition: 'Position',
     colComment: 'Comment',
     colTargetDate: 'Target date',
     colFactor: 'Factor (p.p.)',
     colPlanned: 'Planned (€)',
-    colActual: 'Actual (€)',
+    colActual: 'Spent (€)',
+    filterAllStatuses: 'All statuses',
+    filterAllCategories: 'All categories',
+    filterByStatus: 'Filter by status',
+    filterByCategory: 'Filter by category',
+    resetFilters: 'Reset filters',
+    sortAsc: 'Sort ascending',
+    sortDesc: 'Sort descending',
     statusPaid: 'Paid',
     statusOpen: 'Open',
     statusMarkPaid: 'Mark as paid',
@@ -340,6 +434,21 @@ const translations: Record<string, Translations> = {
     onboardingNoBudgetYet: 'Nothing selected yet. You can also add these items manually later.',
     onboardingValidationYesNo: 'Please choose Yes or No first.',
     onboardingValidationAmount: 'Please enter an amount of at least 0.',
+    onboardingValidationName: 'Please enter a name for your wedding plan.',
+    onboardingValidationGuests: 'Please enter at least 1 guest.',
+    onboardingValidationBudget: 'Please enter a total budget of at least 1.',
+    onboardingBasicsNameTitle: 'What should your plan be called?',
+    onboardingBasicsNameDescription: 'This name is shown later as the title in your budget planner.',
+    onboardingBasicsNameLabel: 'Plan name',
+    onboardingBasicsDateTitle: 'When is your wedding date?',
+    onboardingBasicsDateDescription: 'The date helps you keep a clear planning timeline.',
+    onboardingBasicsDateLabel: 'Wedding date',
+    onboardingBasicsGuestsTitle: 'How many guests are you planning for?',
+    onboardingBasicsGuestsDescription: 'Many costs directly depend on the guest count.',
+    onboardingBasicsGuestsLabel: 'Guest count',
+    onboardingBasicsBudgetTitle: 'What is your total budget?',
+    onboardingBasicsBudgetDescription: 'This helps set a realistic initial budget frame.',
+    onboardingBasicsBudgetLabel: 'Budget (€)',
     onboardingLocationTitle: 'Is your venue already decided?',
     onboardingLocationDescription: 'If yes, we will create a matching venue item right away.',
     onboardingCateringTitle: 'Is the catering already decided?',
@@ -378,25 +487,6 @@ const translations: Record<string, Translations> = {
       'Wedding Party',
       'Other',
     ],
-    regions: {
-      'Baden-Württemberg': 'Baden-Württemberg',
-      Bayern: 'Bavaria',
-      Berlin: 'Berlin',
-      Brandenburg: 'Brandenburg',
-      Bremen: 'Bremen',
-      Hamburg: 'Hamburg',
-      Hessen: 'Hesse',
-      'Mecklenburg-Vorpommern': 'Mecklenburg-Vorpommern',
-      Niedersachsen: 'Lower Saxony',
-      'Nordrhein-Westfalen': 'North Rhine-Westphalia',
-      'Rheinland-Pfalz': 'Rhineland-Palatinate',
-      Saarland: 'Saarland',
-      Sachsen: 'Saxony',
-      'Sachsen-Anhalt': 'Saxony-Anhalt',
-      'Schleswig-Holstein': 'Schleswig-Holstein',
-      Thüringen: 'Thuringia',
-      International: 'International',
-    },
   },
 };
 
@@ -409,13 +499,18 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<string>(() => {
+  const [lang, setLang] = useState<string>('de');
+
+  React.useEffect(() => {
     try {
-      return localStorage.getItem('wedbudget_lang') ?? 'de';
+      const stored = localStorage.getItem('wedbudget_lang');
+      if (stored === 'de' || stored === 'en') {
+        setLang(stored);
+      }
     } catch {
-      return 'de';
+      // silent
     }
-  });
+  }, []);
 
   const switchLang = (newLang: string) => {
     setLang(newLang);

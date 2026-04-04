@@ -21,13 +21,54 @@ export function loadFromLocal(): PlanningData | null {
   }
 }
 
-export function exportToJson(data: Omit<PlanningData, 'version'>): void {
+export function clearLocalData(): void {
+  try {
+    localStorage.removeItem(LOCAL_KEY);
+  } catch {
+    // silent
+  }
+}
+
+export async function exportToJson(data: Omit<PlanningData, 'version'>): Promise<void> {
   const payload = JSON.stringify({ ...data, version: DATA_VERSION }, null, 2);
+  const filename = `wedbudget-planung-${new Date().toISOString().split('T')[0]}.json`;
+
+  // Prefer native save dialog when available to let users choose a location.
+  if ('showSaveFilePicker' in window) {
+    try {
+      const handle = await (window as Window & {
+        showSaveFilePicker: (options?: {
+          suggestedName?: string;
+          types?: Array<{ description?: string; accept: Record<string, string[]> }>;
+          excludeAcceptAllOption?: boolean;
+        }) => Promise<{ createWritable: () => Promise<{ write: (data: string) => Promise<void>; close: () => Promise<void> }> }>;
+      }).showSaveFilePicker({
+        suggestedName: filename,
+        types: [
+          {
+            description: 'JSON',
+            accept: { 'application/json': ['.json'] },
+          },
+        ],
+      });
+
+      const writable = await handle.createWritable();
+      await writable.write(payload);
+      await writable.close();
+      return;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
+      }
+      // Fall back to classic download when picker is unavailable/blocked.
+    }
+  }
+
   const blob = new Blob([payload], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `wedbudget-planung-${new Date().toISOString().split('T')[0]}.json`;
+  a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

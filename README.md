@@ -1,4 +1,4 @@
-# Hochzeitsrechner (WedBudget)
+﻿# Hochzeitsrechner (WedBudget)
 
 Webbasierte Anwendung zur Planung von Hochzeitsbudgets mit Fokus auf einfacher Bedienung, lokaler Datenspeicherung und datenschutzfreundlicher Nutzung ohne Login.
 
@@ -11,22 +11,23 @@ Webbasierte Anwendung zur Planung von Hochzeitsbudgets mit Fokus auf einfacher B
 
 ## Kernfunktionen
 
-- Landing Page mit Einstieg in neue Planung, Fortsetzen und JSON-Import.
+- Landing Page mit Einstieg in neÜ Planung, Fortsetzen und JSON-Import.
 - Budgetrechner mit:
-	- Gästezahl, Region und Gesamtbudget
-	- dynamischer Heuristik für gästeabhängige Kosten
+	- GÃ¤stezahl, Region und Gesamtbudget
+	- dynamischer Heuristik fÃ¼r gÃ¤steabhÃ¤ngige Kosten
 	- Ausgabenliste mit Kategorien, Notizen, Status und Ist-Werten
 	- Balkendiagramm (Soll/Ist) je Kategorie
 - Persistenz und Datenaustausch:
 	- Auto-Save in `localStorage`
 	- JSON-Export/Import
-	- URL-basiertes Teilen über Base64-kodierte Nutzdaten
-- Druckansicht für PDF/Print-Ausgabe.
+	- URL-basiertes Teilen Ã¼ber Base64-kodierte Nutzdaten
+- Druckansicht fÃ¼r PDF/Print-Ausgabe.
 
 ## Tech-Stack
 
+- Next.js 16 (App Router)
 - React 19
-- Vite 7
+- TypeScript 5
 - Recharts (Diagramme)
 - lucide-react (Icons)
 - ESLint 9
@@ -41,7 +42,7 @@ Webbasierte Anwendung zur Planung von Hochzeitsbudgets mit Fokus auf einfacher B
 ### Installation
 
 ```bash
-npm install
+npm --prefix apps/web install
 ```
 
 ### Entwicklung starten
@@ -54,7 +55,7 @@ npm run dev
 
 ```bash
 npm run build
-npm run preview
+npm run start
 ```
 
 ### Linting
@@ -68,10 +69,12 @@ npm run lint
 - Technische Projektdokumentation: `docs/PROJEKTDOKUMENTATION.md`
 - Anforderungsdokument: `docs/ANFORDERUNGSDOKUMENT.md`
 - Transformationskonzept (Next.js, Tailwind, Supabase, Vercel): `docs/TRANSFORMATIONSKONZEPT_NEXT_SUPABASE.md`
+- VollstÄndige Funktionsdokumentation: `docs/FUNKTIONSDOKUMENTATION.md`
+- VollstÄndige Bedienungsanleitung: `docs/BEDIENUNGSANLEITUNG.md`
 
-## Erste Umbaumaßnahmen (Template-Standards)
+## Erste UmbaumaÃŸnahmen (Template-Standards)
 
-Die ersten technischen Maßnahmen auf Basis von `Wamocon/template_repo` sind umgesetzt, ohne die bestehende Vite-App zu brechen:
+Die ersten technischen MaÃŸnahmen auf Basis von `Wamocon/template_repo` sind umgesetzt:
 
 - Next.js-Migrationsziel unter `apps/web` (App Router + TypeScript + Tailwind v4 + Supabase-Client)
 - Supabase-Migrationsstruktur unter `supabase/migrations`
@@ -87,21 +90,19 @@ npm install
 npm run dev
 ```
 
-Die bestehende Anwendung unter Vite bleibt parallel funktionsfähig und kann schrittweise migriert werden.
+Das Projekt wird als Single-Repo mit der App unter `apps/web` gefÃ¼hrt.
 
 ## Projektstruktur
 
 ```text
-src/
-	App.jsx                # Routing zwischen Landing und Rechner
-	LandingPage.jsx        # Einstieg, Import und Fortsetzen
-	Calculator.jsx         # Kernlogik Budget, Tabelle, Diagramme
-	LanguageContext.jsx    # i18n (DE/RU)
-	storage.js             # Persistenz, Import/Export, Share-URL
-	index.css              # Hauptstyles (Layout, Komponenten, Animationen)
-	print.css              # Druckansicht
+apps/web/src/
+  app/                  # Next.js App Router (Landing, Plan)
+  components/           # Landing, Rechner, Onboarding
+  context/              # Sprache und Theme
+  lib/                  # Domainlogik, Typen, Storage
 ```
 
 ## Hinweis
 
 Die Anwendung ist clientseitig ausgelegt. Es gibt keine serverseitige Nutzerverwaltung oder Cloud-Speicherung.
+

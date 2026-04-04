@@ -5,7 +5,7 @@ import { Heart, Upload, ArrowRight, Lock, RefreshCw, BarChart2, Sun, Moon } from
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useTheme } from '@/context/theme-context';
-import { clearLocalData, loadFromLocal, parseImportedJson, saveToLocal } from '@/lib/storage';
+import { clearLocalData, exportToJson, loadFromLocal, parseImportedJson, saveToLocal } from '@/lib/storage';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -13,6 +13,7 @@ export default function LandingPage() {
   const { theme, toggleTheme } = useTheme();
   const [hasLocalData, setHasLocalData] = useState(false);
   const [importError, setImportError] = useState('');
+  const [showOverwriteModal, setShowOverwriteModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -26,11 +27,24 @@ export default function LandingPage() {
 
   const handleNew = () => {
     if (hasLocalData) {
-      const confirmed = window.confirm(t.warnNewPlanningOverwrite);
-      if (!confirmed) return;
-      clearLocalData();
-      setHasLocalData(false);
+      setShowOverwriteModal(true);
+      return;
     }
+    router.push('/plan?fresh=1');
+  };
+
+  const handleExportExistingData = async () => {
+    const existing = loadFromLocal();
+    if (!existing) return;
+    const { version, ...withoutVersion } = existing;
+    void version;
+    await exportToJson(withoutVersion);
+  };
+
+  const handleOverwriteConfirmed = () => {
+    clearLocalData();
+    setHasLocalData(false);
+    setShowOverwriteModal(false);
     router.push('/plan?fresh=1');
   };
 
@@ -71,29 +85,24 @@ export default function LandingPage() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <button
-            className="outline"
+            className="theme-switch"
             onClick={toggleTheme}
-            style={{ borderRadius: '30px', padding: '0.5rem 0.9rem' }}
-            title={theme === 'dark' ? 'Light-Mode aktivieren' : 'Dark-Mode aktivieren'}
+            title={lang === 'de' ? 'Farbmodus wechseln' : 'Toggle theme'}
             suppressHydrationWarning
           >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            <span className="theme-switch__thumb">
+              {theme === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+            </span>
           </button>
-          <div className="lang-switcher">
-            <button
-              className={`lang-btn ${lang === 'de' ? 'lang-btn--active' : ''}`}
-              onClick={() => switchLang('de')}
-            >
-              🇩🇪 DE
-            </button>
-            <button
-              className={`lang-btn ${lang === 'en' ? 'lang-btn--active' : ''}`}
-              onClick={() => switchLang('en')}
-            >
-              🇬🇧 EN
-            </button>
-          </div>
+          <select
+            className="lang-select"
+            value={lang}
+            onChange={(e) => switchLang(e.target.value)}
+            aria-label={lang === 'de' ? 'Sprache auswählen' : 'Select language'}
+          >
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+          </select>
           <button className="outline" onClick={handleNew} style={{ borderRadius: '30px' }}>
             {t.navCta}
           </button>
@@ -181,6 +190,53 @@ export default function LandingPage() {
       <footer className="landing-footer">
         {t.footerText.replace('{year}', String(new Date().getFullYear()))}
       </footer>
+
+      {showOverwriteModal && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'var(--bg-color)',
+            display: 'grid',
+            placeItems: 'center',
+            zIndex: 9999,
+            padding: '1rem',
+          }}
+        >
+          <div className="glass-panel" style={{ width: 'min(760px, 100%)' }}>
+            <h3 style={{ marginBottom: '0.5rem' }}>
+              {lang === 'de' ? 'Bestehende Planung gefunden' : 'Existing plan found'}
+            </h3>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>
+              {lang === 'de'
+                ? 'Es gibt bereits Daten im Browser-Cache. Du kannst diese zuerst exportieren oder die Daten für ein neues Projekt überschreiben.'
+                : 'There is already data in browser cache. You can export it first or overwrite it to start a new project.'}
+            </p>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                gap: '0.6rem',
+                alignItems: 'stretch',
+              }}
+            >
+              <button
+                className="outline"
+                onClick={() => setShowOverwriteModal(false)}
+                style={{ whiteSpace: 'nowrap' }}
+              >
+                {lang === 'de' ? 'Abbrechen' : 'Cancel'}
+              </button>
+              <button className="outline" onClick={handleExportExistingData} style={{ whiteSpace: 'nowrap' }}>
+                {lang === 'de' ? 'Daten exportieren' : 'Export data'}
+              </button>
+              <button onClick={handleOverwriteConfirmed} style={{ whiteSpace: 'nowrap' }}>
+                {lang === 'de' ? 'Überschreiben und neu starten' : 'Overwrite and start new'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

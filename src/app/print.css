@@ -72,6 +72,16 @@
     display: none !important;
   }
 
+  .fade-in,
+  .delay-1,
+  .delay-2,
+  .delay-3,
+  .pulse {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   @page {
     margin: 1cm;
   }

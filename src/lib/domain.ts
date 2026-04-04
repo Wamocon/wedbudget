@@ -9,26 +9,6 @@ import type {
 
 export const DATA_VERSION = 2;
 
-export const REGIONAL_MULTIPLIER: Record<string, number> = {
-  'Baden-Württemberg': 1.15,
-  Bayern: 1.2,
-  Berlin: 1.1,
-  Brandenburg: 0.9,
-  Bremen: 1.05,
-  Hamburg: 1.25,
-  Hessen: 1.15,
-  'Mecklenburg-Vorpommern': 0.85,
-  Niedersachsen: 1.0,
-  'Nordrhein-Westfalen': 1.1,
-  'Rheinland-Pfalz': 1.05,
-  Saarland: 0.95,
-  Sachsen: 0.85,
-  'Sachsen-Anhalt': 0.85,
-  'Schleswig-Holstein': 1.05,
-  Thüringen: 0.85,
-  International: 1.5,
-};
-
 export const EXPENSE_CATEGORIES: string[] = [
   'Location',
   'Catering',
@@ -52,7 +32,6 @@ export function getDefaultData(): PlanningData {
     weddingName: 'Unsere Hochzeit',
     weddingDate: '',
     guestCount: 80,
-    region: 'Nordrhein-Westfalen',
     totalBudget: 25000,
     expenses: [],
   };
@@ -61,9 +40,7 @@ export function getDefaultData(): PlanningData {
 export function applyHeuristics(
   expenses: Expense[],
   guestCount: number,
-  region: string,
 ): Expense[] {
-  void region;
   return expenses.map((exp) => {
     if (exp.isPerPerson) {
       return { ...exp, estimated: Math.round(exp.costPerPerson * guestCount) };
@@ -182,7 +159,6 @@ export function migrateData(data: unknown): PlanningData {
     weddingName: typeof obj.weddingName === 'string' ? obj.weddingName : fallback.weddingName,
     weddingDate: typeof obj.weddingDate === 'string' ? obj.weddingDate : fallback.weddingDate,
     guestCount: typeof obj.guestCount === 'number' ? obj.guestCount : fallback.guestCount,
-    region: typeof obj.region === 'string' ? obj.region : fallback.region,
     totalBudget: typeof obj.totalBudget === 'number' ? obj.totalBudget : fallback.totalBudget,
     expenses,
   };
