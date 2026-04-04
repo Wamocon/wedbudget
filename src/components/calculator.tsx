@@ -20,6 +20,9 @@ import {
   Trash2,
   Sun,
   Moon,
+  Lightbulb,
+  ArrowRight,
+  Clock,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -712,6 +715,130 @@ export default function Calculator({ initialData, onBack, initialTab = 'dashboar
     </div>
   );
 
+  const nextSteps = useMemo(() => {
+    const steps: Array<{
+      key: string;
+      text: string;
+      icon: typeof CalendarDays;
+      action?: { label: string; tab: AppTab };
+      severity: 'info' | 'warn';
+    }> = [];
+
+    if (!weddingDate) {
+      steps.push({
+        key: 'set-date',
+        text: t.nextStepSetDate,
+        icon: CalendarDays,
+        action: { label: t.nextStepGoToBasics, tab: 'basics' },
+        severity: 'info',
+      });
+    }
+
+    if (expenses.length === 0) {
+      steps.push({
+        key: 'add-expense',
+        text: t.nextStepAddExpense,
+        icon: Plus,
+        action: { label: t.nextStepGoToDetails, tab: 'details' },
+        severity: 'info',
+      });
+    }
+
+    if (preliminaryResult < 0) {
+      steps.push({
+        key: 'over-budget',
+        text: t.nextStepOverBudget,
+        icon: AlertTriangle,
+        action: { label: t.nextStepGoToDetails, tab: 'details' },
+        severity: 'warn',
+      });
+    }
+
+    const itemsWithOpenSpending = expenses.filter(
+      (e) => e.actual > 0 && !CLOSED_STATUSES.has(e.status),
+    ).length;
+    if (itemsWithOpenSpending > 0) {
+      steps.push({
+        key: 'mark-paid',
+        text: t.nextStepMarkPaid(itemsWithOpenSpending),
+        icon: CheckCircle,
+        action: { label: t.nextStepGoToDetails, tab: 'details' },
+        severity: 'warn',
+      });
+    }
+
+    const itemsWithoutDate = expenses.filter((e) => !e.targetDate).length;
+    if (itemsWithoutDate > 0 && expenses.length > 0) {
+      steps.push({
+        key: 'set-dates',
+        text: t.nextStepSetTargetDates(itemsWithoutDate),
+        icon: CalendarDays,
+        action: { label: t.nextStepGoToDetails, tab: 'details' },
+        severity: 'info',
+      });
+    }
+
+    const today = new Date();
+    const in30Days = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+    const todayStr = today.toISOString().slice(0, 10);
+    const in30Str = in30Days.toISOString().slice(0, 10);
+    const upcomingItems = expenses.filter(
+      (e) => e.targetDate && e.targetDate >= todayStr && e.targetDate <= in30Str && !CLOSED_STATUSES.has(e.status),
+    ).length;
+    if (upcomingItems > 0) {
+      steps.push({
+        key: 'upcoming',
+        text: t.nextStepUpcoming(upcomingItems),
+        icon: Clock,
+        action: { label: t.nextStepGoToDetails, tab: 'details' },
+        severity: 'info',
+      });
+    }
+
+    return steps;
+  }, [weddingDate, expenses, preliminaryResult, t]);
+
+  const NextStepsPanel = nextSteps.length > 0 ? (
+    <div className="next-steps-panel glass-panel">
+      <h3 className="next-steps-title">
+        <Lightbulb size={18} />
+        {t.nextStepsTitle}
+      </h3>
+      <div className="next-steps-list">
+        {nextSteps.map((step) => {
+          const Icon = step.icon;
+          return (
+            <div key={step.key} className={`next-step-item next-step-item--${step.severity}`}>
+              <div className="next-step-icon">
+                <Icon size={16} />
+              </div>
+              <span className="next-step-text">{step.text}</span>
+              {step.action ? (
+                <button
+                  className="outline next-step-action"
+                  onClick={() => {
+                    setActiveTab(step.action!.tab);
+                    setSelectedExpenseId(null);
+                  }}
+                >
+                  {step.action.label} <ArrowRight size={14} />
+                </button>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  ) : (
+    <div className="next-steps-panel next-steps-panel--done glass-panel">
+      <h3 className="next-steps-title">
+        <CheckCircle size={18} />
+        {t.nextStepsTitle}
+      </h3>
+      <p className="next-step-done-text">{t.nextStepAllDone}</p>
+    </div>
+  );
+
   const selectedCategoryLabel = (category: string) => {
     const idx = EXPENSE_CATEGORIES.indexOf(category);
     if (idx < 0) return category;
@@ -951,6 +1078,28 @@ export default function Calculator({ initialData, onBack, initialTab = 'dashboar
               </span>
             </div>
           ) : null}
+          {expenses.length === 0 ? (
+            <div
+              className="glass-panel next-steps-panel--done"
+              style={{
+                padding: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                background: 'linear-gradient(135deg, rgba(126, 153, 140, 0.12), rgba(255, 255, 255, 0.04))',
+                borderColor: 'rgba(126, 153, 140, 0.35)',
+              }}
+            >
+              <div className="stats-icon" style={{ background: 'rgba(102, 187, 106, 0.1)', color: 'var(--success)' }}>
+                <Lightbulb />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                <strong style={{ fontSize: '1.02rem' }}>{t.dashboardWelcome}</strong>
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.92rem' }}>{t.dashboardWelcomeText}</span>
+              </div>
+            </div>
+          ) : null}
+          {NextStepsPanel}
           {StatsCards}
           {CalculationHints}
 
@@ -1240,6 +1389,15 @@ export default function Calculator({ initialData, onBack, initialTab = 'dashboar
               </tbody>
             </table>
           </div>
+          {expenses.length === 0 && (
+            <div className="empty-state-panel">
+              <div className="empty-state-icon">
+                <Plus size={32} />
+              </div>
+              <h3>{t.emptyDetailsTitle}</h3>
+              <p>{t.emptyDetailsText}</p>
+            </div>
+          )}
         </div>
       )}
 

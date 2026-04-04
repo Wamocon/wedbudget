@@ -147,6 +147,20 @@ interface Translations {
   onboardingDj: string;
   onboardingPhotographer: string;
   onboardingVideographer: string;
+  nextStepsTitle: string;
+  nextStepSetDate: string;
+  nextStepAddExpense: string;
+  nextStepSetTargetDates: (count: number) => string;
+  nextStepMarkPaid: (count: number) => string;
+  nextStepOverBudget: string;
+  nextStepUpcoming: (count: number) => string;
+  nextStepAllDone: string;
+  nextStepGoToBasics: string;
+  nextStepGoToDetails: string;
+  emptyDetailsTitle: string;
+  emptyDetailsText: string;
+  dashboardWelcome: string;
+  dashboardWelcomeText: string;
   categories: string[];
 }
 
@@ -302,6 +316,20 @@ const translations: Record<string, Translations> = {
     onboardingDj: 'DJ',
     onboardingPhotographer: 'Fotograf',
     onboardingVideographer: 'Videograf',
+    nextStepsTitle: 'Nächste Schritte',
+    nextStepSetDate: 'Hochzeitsdatum festlegen, um den Countdown zu aktivieren',
+    nextStepAddExpense: 'Legt eure erste Position an, um die Planung zu starten',
+    nextStepSetTargetDates: (count: number) => `${count} ${count === 1 ? 'Posten' : 'Posten'} ohne Zieldatum – Termine setzen hilft beim Überblick`,
+    nextStepMarkPaid: (count: number) => `${count} ${count === 1 ? 'Posten hat' : 'Posten haben'} Ausgaben, aber Status ist noch nicht Bezahlt/Fertig`,
+    nextStepOverBudget: 'Das Budget wird voraussichtlich überschritten – prüft eure Planung',
+    nextStepUpcoming: (count: number) => `${count} ${count === 1 ? 'Posten' : 'Posten'} mit Zieldatum in den nächsten 30 Tagen`,
+    nextStepAllDone: 'Alles im grünen Bereich! Eure Planung ist auf dem neuesten Stand.',
+    nextStepGoToBasics: 'Zu Eckdaten',
+    nextStepGoToDetails: 'Zu Details',
+    emptyDetailsTitle: 'Noch keine Positionen vorhanden',
+    emptyDetailsText: 'Legt eure erste Position über den Button „Position hinzufügen" an. Von dort aus könnt ihr Kategorien, Beträge und Status verwalten.',
+    dashboardWelcome: 'Willkommen bei eurer Hochzeitsplanung!',
+    dashboardWelcomeText: 'Startet am besten mit den Eckdaten und legt dann eure ersten Kostenpositionen an. Das Dashboard zeigt euch jederzeit den aktuellen Stand.',
     categories: [
       'Location',
       'Catering',
@@ -471,6 +499,20 @@ const translations: Record<string, Translations> = {
     onboardingDj: 'DJ',
     onboardingPhotographer: 'Photographer',
     onboardingVideographer: 'Videographer',
+    nextStepsTitle: 'Next Steps',
+    nextStepSetDate: 'Set a wedding date to activate the countdown',
+    nextStepAddExpense: 'Add your first expense item to start planning',
+    nextStepSetTargetDates: (count: number) => `${count} ${count === 1 ? 'item' : 'items'} without a target date – setting dates helps you keep track`,
+    nextStepMarkPaid: (count: number) => `${count} ${count === 1 ? 'item has' : 'items have'} spending entered but status is not yet Paid/Done`,
+    nextStepOverBudget: 'Budget is likely to be exceeded – review your plan',
+    nextStepUpcoming: (count: number) => `${count} ${count === 1 ? 'item' : 'items'} with a target date in the next 30 days`,
+    nextStepAllDone: 'All good! Your plan is up to date.',
+    nextStepGoToBasics: 'Go to Basics',
+    nextStepGoToDetails: 'Go to Details',
+    emptyDetailsTitle: 'No items yet',
+    emptyDetailsText: 'Add your first item using the "Add position" button above. From there you can manage categories, amounts, and status.',
+    dashboardWelcome: 'Welcome to your wedding plan!',
+    dashboardWelcomeText: 'Start by reviewing the basics, then add your first expense items. The dashboard shows your current status at a glance.',
     categories: [
       'Venue',
       'Catering',

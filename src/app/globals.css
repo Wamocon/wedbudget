@@ -742,3 +742,122 @@ tr:hover td {
   }
 }
 
+/* ── Next Steps Panel ─────────────────────────────────── */
+.next-steps-panel {
+  padding: 1.15rem 1.25rem;
+}
+
+.next-steps-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.75rem;
+}
+
+.next-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.next-step-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  background: var(--surface-soft);
+  font-size: 0.9rem;
+}
+
+.next-step-item--warn {
+  border-color: rgba(200, 90, 110, 0.3);
+  background: var(--danger-soft-bg);
+}
+
+.next-step-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft-bg);
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.next-step-item--warn .next-step-icon {
+  background: var(--danger-soft-bg);
+  color: var(--danger);
+}
+
+.next-step-text {
+  flex: 1;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.next-step-action {
+  padding: 0.35rem 0.7rem !important;
+  font-size: 0.8rem !important;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.next-step-done-text {
+  color: var(--success);
+  font-size: 0.92rem;
+}
+
+.next-steps-panel--done .next-steps-title {
+  color: var(--success);
+}
+
+/* ── Empty State ──────────────────────────────────────── */
+.empty-state-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  gap: 0.75rem;
+}
+
+.empty-state-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft-bg);
+  color: var(--accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state-panel h3 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.empty-state-panel p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 420px;
+}
+
+@media (max-width: 768px) {
+  .next-step-item {
+    flex-wrap: wrap;
+  }
+
+  .next-step-action {
+    width: 100%;
+    justify-content: center;
+  }
+}
