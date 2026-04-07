@@ -1,0 +1,12 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    uses: Wamocon/github_workflow/.github/workflows/deploy.yml@main
+    secrets: inherit
