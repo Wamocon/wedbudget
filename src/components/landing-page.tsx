@@ -1,11 +1,13 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { Heart, Upload, ArrowRight, Lock, RefreshCw, BarChart2, Sun, Moon } from 'lucide-react';
+import { Upload, ArrowRight, Lock, RefreshCw, BarChart2, Sun, Moon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/language-context';
 import { useTheme } from '@/context/theme-context';
 import { clearLocalData, exportToJson, loadFromLocal, parseImportedJson, saveToLocal } from '@/lib/storage';
+import { BookOpen } from 'lucide-react';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -80,7 +82,7 @@ export default function LandingPage() {
     <div className="landing-page">
       <nav className="navbar">
         <div className="nav-brand">
-          <Heart size={24} />
+          <Image src="/app-icon-light.svg" alt="WedBudget Logo" width={26} height={26} priority />
           {t.navBrand}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -183,6 +185,34 @@ export default function LandingPage() {
             </div>
             <h3 className="feature-title">{t.feature3Title}</h3>
             <p className="feature-text">{t.feature3Text}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="howto-teaser-section">
+        <div className="howto-teaser-inner">
+          <div className="howto-teaser-card glass-panel">
+            <div className="howto-teaser-card__icon">
+              <BookOpen size={28} />
+            </div>
+            <div className="howto-teaser-card__body">
+              <h3>{lang === 'de' ? 'Noch unsicher? Das How-To erklärt alles.' : 'Not sure? The How-To explains everything.'}</h3>
+              <p>
+                {lang === 'de'
+                  ? 'Von Einstieg bis Export – alle Funktionen Schritt für Schritt beschrieben.'
+                  : 'From getting started to exporting – every feature explained step by step.'}
+              </p>
+              <ul className="howto-teaser-card__highlights">
+                <li>{lang === 'de' ? 'Dashboard & Kennzahlen verstehen' : 'Understand dashboard metrics'}</li>
+                <li>{lang === 'de' ? 'Statusfluss und Budget-Logik' : 'Status flow and budget logic'}</li>
+                <li>{lang === 'de' ? 'Export, Teilen & PDF' : 'Export, share & PDF'}</li>
+              </ul>
+            </div>
+            <div className="howto-teaser-card__cta">
+              <button onClick={() => window.open('/howto', '_blank', 'noopener,noreferrer')}>
+                {lang === 'de' ? 'Zur Anleitung' : 'View guide'} <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </section>

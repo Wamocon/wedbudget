@@ -25,6 +25,12 @@ export const metadata: Metadata = {
   title: "WedBudget – Kostenfreier Hochzeitsplaner",
   description:
     "Plane dein Hochzeitsbudget kostenlos, werbefrei und ohne Datenspeicherung auf unseren Servern.",
+  applicationName: "WedBudget",
+  icons: {
+    icon: "/app-icon-light.svg",
+    shortcut: "/app-icon-light.svg",
+    apple: "/app-icon-light.svg",
+  },
 };
 
 export default function RootLayout({
