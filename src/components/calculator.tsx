@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useMemo, useRef } from 'react';
 import {
   ArrowLeft,
@@ -23,6 +24,7 @@ import {
   Lightbulb,
   ArrowRight,
   Clock,
+  BookOpen,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -860,6 +862,9 @@ export default function Calculator({ initialData, onBack, initialTab = 'dashboar
         </div>
 
         <div className="calc-header__center">
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.35rem' }}>
+            <Image src="/app-icon-light.svg" alt="WedBudget Logo" width={28} height={28} priority />
+          </div>
           <h1>{weddingName}</h1>
           <p>{t.calcSubtitle}</p>
           {formattedWeddingDate ? <p style={{ fontSize: '0.9rem' }}>{formattedWeddingDate}</p> : null}
@@ -1676,6 +1681,13 @@ export default function Calculator({ initialData, onBack, initialTab = 'dashboar
           </div>
         </div>
       )}
+
+      <footer className="planner-footer hide-print">
+        <span>{lang === 'de' ? 'Fragen zur Bedienung?' : 'Need help using the planner?'}</span>
+        <button className="outline" onClick={() => window.open('/howto', '_blank', 'noopener,noreferrer')}>
+          <BookOpen size={16} /> How-To
+        </button>
+      </footer>
     </div>
   );
 }

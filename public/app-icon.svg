@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="App Icon – Dark">
+  <defs>
+    <radialGradient id="bgGrad" cx="38%" cy="28%" r="72%" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1c2330"/>
+      <stop offset="100%" stop-color="#0d1014"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#d4a96a"/>
+      <stop offset="45%" stop-color="#b8894e"/>
+      <stop offset="100%" stop-color="#8f6734"/>
+    </linearGradient>
+    <linearGradient id="goldBarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c99d5f"/>
+      <stop offset="100%" stop-color="#9a6e38"/>
+    </linearGradient>
+    <linearGradient id="sageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#96b4a7"/>
+      <stop offset="100%" stop-color="#637f73"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- Rings — both fully visible (Audi-style overlap, no clipping/shading) -->
+  <circle cx="196" cy="206" r="90" fill="none" stroke="url(#goldGrad)" stroke-width="28"/>
+  <circle cx="316" cy="206" r="90" fill="none" stroke="url(#goldGrad)" stroke-width="28"/>
+
+  <!-- Budget bars -->
+  <line x1="144" y1="428" x2="372" y2="428" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" opacity="0.36"/>
+  <rect x="156" y="374" width="40" height="54" rx="10" fill="url(#sageGrad)" opacity="0.70"/>
+  <rect x="210" y="344" width="40" height="84" rx="10" fill="url(#sageGrad)" opacity="0.86"/>
+  <rect x="264" y="356" width="40" height="72" rx="10" fill="url(#sageGrad)"/>
+  <rect x="318" y="326" width="40" height="102" rx="10" fill="url(#goldBarGrad)"/>
+</svg>
