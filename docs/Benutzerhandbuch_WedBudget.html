@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Benutzerhandbuch - WedBudget</title>
+  <style>
+    :root {
+      --bg: #f9f4ec;
+      --panel: #fffaf3;
+      --text: #27211b;
+      --muted: #6d6258;
+      --gold: #8f6a3f;
+      --gold-soft: rgba(143, 106, 63, 0.14);
+      --border: rgba(87, 70, 50, 0.22);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(143,106,63,.12) 0%, transparent 36%),
+        radial-gradient(circle at 88% 90%, rgba(95,127,116,.08) 0%, transparent 42%),
+        var(--bg);
+      line-height: 1.5;
+      font-size: 12pt;
+    }
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 34px 28px 40px;
+    }
+    .hero {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 10pt;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      background: var(--gold-soft);
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 4px 0 8px;
+      color: var(--gold);
+      font-size: 24pt;
+      line-height: 1.15;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12pt;
+    }
+    .meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10pt;
+    }
+    .section {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+    .section h2 {
+      margin: 0 0 7px;
+      color: var(--gold);
+      font-size: 14pt;
+      line-height: 1.25;
+    }
+    .section p {
+      margin: 0 0 8px;
+      color: var(--muted);
+    }
+    .kv {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+    .kv li {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 8px;
+      align-items: baseline;
+      border-top: 1px dashed var(--border);
+      padding-top: 6px;
+    }
+    .kv li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .kv b {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .tips {
+      margin-top: 14px;
+      border-left: 4px solid var(--gold);
+      padding: 10px 12px;
+      background: var(--gold-soft);
+      border-radius: 8px;
+      color: var(--text);
+      page-break-inside: avoid;
+    }
+    .footer {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 10pt;
+      text-align: center;
+    }
+    @media print {
+      @page { size: A4; margin: 14mm; }
+      body { background: #fff; }
+      .page { max-width: none; margin: 0; padding: 0; }
+      .section, .hero { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="badge">WedBudget Benutzerhandbuch</div>
+      <h1>Benutzerhandbuch - WedBudget</h1>
+      <p class="subtitle">Alle Funktionen der Anwendung im Überblick - vom Einstieg bis zum Export.</p>
+      <p class="meta">Version: 1.0 · Stand: 08.04.2026</p>
+    </section>
+
+    <section class="section">
+      <h2>1) Einstieg & Navigation</h2>
+      <p>So startet ihr in eure Planung und findet euch in der App schnell zurecht.</p>
+      <ul class="kv">
+        <li><b>Neue Planung</b><span>Startet den geführten Assistenten für eine frische Planung.</span></li>
+        <li><b>Letzte Planung</b><span>Erscheint automatisch bei vorhandenen lokalen Daten.</span></li>
+        <li><b>Backup laden</b><span>Importiert einen zuvor gespeicherten JSON-Stand.</span></li>
+        <li><b>Schutz beim Überschreiben</b><span>Vor dem Ersetzen bestehender Daten wird eine Bestätigung abgefragt.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>2) Sprache, Design & Datenschutz</h2>
+      <ul class="kv">
+        <li><b>Sprache</b><span>Deutsch/Englisch umschaltbar, Auswahl bleibt lokal gespeichert.</span></li>
+        <li><b>Theme</b><span>Hell-/Dunkelmodus über den Theme-Schalter.</span></li>
+        <li><b>Datenschutz</b><span>Keine Registrierung, keine Server-Speicherung, Daten bleiben im Browser.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>3) Einrichtungsassistent</h2>
+      <ul class="kv">
+        <li><b>Grunddaten</b><span>Name, Datum, Gästezahl und Budget als Basis festlegen.</span></li>
+        <li><b>Intelligente Vorbereitung</b><span>Nur relevante Kostenposten werden vorausgewählt.</span></li>
+        <li><b>Flexibilität</b><span>Schritte können übersprungen und später jederzeit angepasst werden.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>4) Reiter „Eckdaten“</h2>
+      <ul class="kv">
+        <li><b>Hochzeitsname & Datum</b><span>Steuern Titelanzeige und Countdown im Dashboard.</span></li>
+        <li><b>Gästezahl</b><span>Aktualisiert gästeabhängige Positionen automatisch.</span></li>
+        <li><b>Gesamtbudget</b><span>Grundlage für alle Kennzahlen und Warnungen.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>5) Reiter „Dashboard“</h2>
+      <ul class="kv">
+        <li><b>Geplante Ausgaben</b><span>Summe aller geplanten Positionen.</span></li>
+        <li><b>Ausgegeben</b><span>Nur Posten mit Status „Bezahlt“ oder „Fertig“ werden eingerechnet.</span></li>
+        <li><b>Voraussichtliches Ergebnis</b><span>Budget - (Restausgaben + Ausgegeben).</span></li>
+        <li><b>Nächste Schritte</b><span>Kontextbasierte Hinweise zu fehlenden Daten oder Budgetrisiken.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>6) Reiter „Details“ (Tabelle)</h2>
+      <ul class="kv">
+        <li><b>Positionen verwalten</b><span>Kategorie, Titel, Zieltermin, Status, Geplant und Ausgegeben pflegen.</span></li>
+        <li><b>Filtern & Sortieren</b><span>Nach Status/Kategorie filtern, nach Zieltermin sortieren.</span></li>
+        <li><b>Statusfluss</b><span>Offen -> In Arbeit -> Bezahlt -> Fertig.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>7) Detailansicht einer Position</h2>
+      <ul class="kv">
+        <li><b>Pro-Person-Kosten</b><span>Automatische Berechnung auf Basis der Gästezahl.</span></li>
+        <li><b>Checkliste</b><span>Unteraufgaben mit Fälligkeitsdatum und Erledigt-Status.</span></li>
+        <li><b>Historie & Kommentare</b><span>Nachvollziehbare Dokumentation von Entscheidungen.</span></li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>8) Export, Teilen & PDF</h2>
+      <ul class="kv">
+        <li><b>JSON-Backup</b><span>Komplette Planung zur lokalen Sicherung exportieren.</span></li>
+        <li><b>Link teilen</b><span>Aktuellen Stand über URL mit Partnern teilen.</span></li>
+        <li><b>PDF-Ausgabe</b><span>Aktuellen Reiter oder alle Reiter gesammelt drucken.</span></li>
+      </ul>
+    </section>
+
+    <div class="tips">
+      <b>Empfehlung:</b> Nach größeren Änderungen regelmäßig ein JSON-Backup exportieren, damit euer Planungsstand jederzeit wiederherstellbar bleibt.
+    </div>
+
+    <p class="footer">© 2026 WedBudget · Kostenfreies Planungstool für Hochzeiten</p>
+  </main>
+</body>
+</html>
